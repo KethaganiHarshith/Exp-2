@@ -1,27 +1,136 @@
 <!DOCTYPE html>
-<html>
-<head><title>Hospital</title></head>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>City Care General Hospital | Patient Appointments</title>
+  <style>
+    body { font-family: Arial, sans-serif; line-height: 1.6; margin: 0; padding: 1.5rem; color: #111; }
+    .skip-link { position: absolute; top: -40px; left: 0; background: #004499; color: #fff; padding: 8px; z-index: 100; }
+    .skip-link:focus { top: 0; }
+    :focus-visible { outline: 3px solid #004499; outline-offset: 2px; }
+    nav ul { list-style: none; padding: 0; display: flex; gap: 1rem; }
+    a { color: #004499; }
+    fieldset { margin-bottom: 1.5rem; padding: 1rem; max-width: 450px; }
+    .form-group { margin-bottom: 1rem; }
+    label { display: block; font-weight: bold; margin-bottom: 0.25rem; }
+    input, select, textarea { width: 100%; padding: 0.5rem; box-sizing: border-box; }
+    .hint { font-size: 0.875rem; color: #444; display: block; }
+    button { background: #004499; color: #fff; border: none; padding: 0.75rem 1.25rem; font-size: 1rem; cursor: pointer; }
+  </style>
+</head>
 <body>
-  <div class="header">
-    <div style="font-size: 32px;">City Care Hospital</div>
-    <div><a href="#services">Services</a> | <a href="#doctors">Doctors</a></div>
-  </div>
-  <div id="services">
-    <div style="font-size: 24px;">Services</div>
-    <div>Cardiology - Heart Care</div>
-  </div>
-  <div id="doctors">
-    <div style="font-size: 24px;">Doctors</div>
-    <div>Dr. Sharma - Cardiologist</div>
-  </div>
-  <div>
-    <div style="font-size: 24px;">Book Appointment</div>
-    <form>
-      <input type="text" placeholder="Your Name">
-      <input type="text" placeholder="Your Phone">
-      <input type="text" placeholder="Date">
-      <div onclick="alert('Submitted')">Submit</div>
-    </form>
-  </div>
+
+  <a href="#main-content" class="skip-link">Skip to main content</a>
+
+  <header>
+    <h1>City Care General Hospital</h1>
+    <p>Compassionate, Accessible Healthcare for Everyone</p>
+    <nav aria-label="Primary Navigation">
+      <ul>
+        <li><a href="#services">Hospital Services</a></li>
+        <li><a href="#doctors">Our Doctors</a></li>
+        <li><a href="#appointment">Book Appointment</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <main id="main-content">
+    <section id="services" aria-labelledby="services-heading">
+      <h2 id="services-heading">Hospital Services</h2>
+      <ul>
+        <li>
+          <article>
+            <h3>Cardiology</h3>
+            <p>Comprehensive heart care, diagnostics, and preventive screenings.</p>
+          </article>
+        </li>
+        <li>
+          <article>
+            <h3>Orthopedics</h3>
+            <p>Joint replacement, sports medicine, and physical rehabilitation.</p>
+          </article>
+        </li>
+        <li>
+          <article>
+            <h3>Pediatrics</h3>
+            <p>Specialized medical care for infants, children, and adolescents.</p>
+          </article>
+        </li>
+      </ul>
+    </section>
+
+    <section id="doctors" aria-labelledby="doctors-heading">
+      <h2 id="doctors-heading">Meet Our Specialists</h2>
+      <article>
+        <h3>Dr. Priya Sharma, MD</h3>
+        <p><strong>Department:</strong> Cardiology</p>
+        <p><strong>Availability:</strong> Monday – Friday, 9:00 AM – 2:00 PM</p>
+      </article>
+      <article>
+        <h3>Dr. Arjun Rao, MS</h3>
+        <p><strong>Department:</strong> Orthopedics</p>
+        <p><strong>Availability:</strong> Tuesday – Saturday, 10:00 AM – 4:00 PM</p>
+      </article>
+    </section>
+
+    <section id="appointment" aria-labelledby="appointment-heading">
+      <h2 id="appointment-heading">Book a Patient Appointment</h2>
+      <p>Fields marked with an asterisk (<span aria-hidden="true">*</span>) are required.</p>
+
+      <form action="#" method="POST">
+        <fieldset>
+          <legend>Patient Information</legend>
+
+          <div class="form-group">
+            <label for="patient-name">Full Name <span aria-hidden="true">*</span></label>
+            <input type="text" id="patient-name" name="patient_name" autocomplete="name" required aria-required="true">
+          </div>
+
+          <div class="form-group">
+            <label for="patient-email">Email Address <span aria-hidden="true">*</span></label>
+            <input type="email" id="patient-email" name="patient_email" autocomplete="email" required aria-required="true">
+          </div>
+
+          <div class="form-group">
+            <label for="patient-phone">Phone Number <span aria-hidden="true">*</span></label>
+            <input type="tel" id="patient-phone" name="patient_phone" pattern="[0-9]{10}" aria-describedby="phone-hint" required aria-required="true">
+            <small id="phone-hint" class="hint">Enter a 10-digit mobile number without spaces or dashes.</small>
+          </div>
+        </fieldset>
+
+        <fieldset>
+          <legend>Appointment Details</legend>
+
+          <div class="form-group">
+            <label for="department-select">Select Department <span aria-hidden="true">*</span></label>
+            <select id="department-select" name="department" required aria-required="true">
+              <option value="">-- Choose a Department --</option>
+              <option value="cardiology">Cardiology</option>
+              <option value="orthopedics">Orthopedics</option>
+              <option value="pediatrics">Pediatrics</option>
+            </select>
+          </div>
+
+          <div class="form-group">
+            <label for="appointment-date">Preferred Date <span aria-hidden="true">*</span></label>
+            <input type="date" id="appointment-date" name="appointment_date" required aria-required="true">
+          </div>
+
+          <div class="form-group">
+            <label for="symptoms">Reason for Visit / Symptoms</label>
+            <textarea id="symptoms" name="symptoms" rows="4"></textarea>
+          </div>
+        </fieldset>
+
+        <button type="submit">Confirm Appointment</button>
+      </form>
+    </section>
+  </main>
+
+  <footer>
+    <p>&copy; 2026 City Care General Hospital. Emergency Helpline: <a href="tel:+91108">108</a></p>
+  </footer>
+
 </body>
-</html>
+</html
